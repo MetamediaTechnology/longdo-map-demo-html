@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./src/assets/img/favicon.ico" />
+    <title>LongdoMap</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt&display=swap">
+    <link rel="stylesheet" href="./src/assets/css/style.css">
+    <script>
+        const mapKey = '[API_KEY]'
+        var script = document.createElement("script");
+        script.src = `https://api.longdo.com/map3/?key=${mapKey}`;
+        document.head.appendChild(script);
+    </script>
+    <script src="./src/assets/js/script.js"></script>
+</head>
+
+<body onload="init();">
+    <div id="map"></div>
+    <div class="search-on-map">
+        <input type="text" name="search" id="search" placeholder="ค้นหา สถานที่, ถนน" onkeyup="doSuggest(event)"
+            onfocus="onClickSearch()">
+        <button class="icon close-btn" onclick="clearSearch()">
+            <img src="src/assets/img/ic_close.svg" style="width: 20px;">
+        </button>
+        <button onClick="doSearch()" class="icon ripple">
+            <img class="icon-search" src="src/assets/img/ic_saerch.svg">
+        </button>
+    </div>
+    <button class="nearby-on-map ripple" onClick="doNearPoi()">ค้นหาใกล้เคียง</button>
+    <div id="search-result-panel" class="hide">
+        <div id="search-result-panel-header">
+            <button class="icon ripple" onClick="onClickExpand()">
+                <img class="expand rotate" src="src/assets/img/ic_chevron_up_circle_outline.svg">
+            </button>
+        </div>
+        <div id="search-result-panel-body">
+            <div id="search-result-list"></div>
+            <div id="empty-container" class="hide">ไม่พบผลลัพธ์การค้นหา</div>
+            <button id="search-more-btn" class="hide" onclick="doSearchMore()">เพิ่มเติม</button>
+            <button id="near-poi-more-btn" class="hide" onclick="doNearPoiMore()">เพิ่มเติม</button>
+        </div>
+    </div>
+    <div id="suggest" class="hide"></div>
+    <div id="control-map-panel">
+        <button class="icon icon-gps ripple" onclick="getCurrentLocation()">
+            <img src="src/assets/img/ic_crosshairs_gps.svg" alt="ตำแหน่งปัจจุบัน">
+        </button>
+        <button class="icon icon-zoom-in ripple" onclick="zoomIn()">
+            <img src="src/assets/img/ic_plus.svg" alt="ซูมเข้า">
+        </button>
+        <button class="icon icon-zoom-out ripple" onclick="zoomOut()">
+            <img src="src/assets/img/ic_minus.svg" alt="ซุมออก">
+        </button>
+    </div>
+</body>
+
+</html>
